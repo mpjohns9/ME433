@@ -60,5 +60,25 @@ int main() {
 
     while (1) {
         
+        if (PORTBbits.RB4 == 0)
+        {
+            for (int i=0; i<2; i++)
+            {
+                // turn light on
+                LATAbits.LATA4 = 1;
+                
+                // delay for 0.5s
+                _CP0_SET_COUNT(0);
+                while (_CP0_GET_COUNT() < 12000000) {}
+                
+                // turn light off
+                LATAbits.LATA4 = 0;
+                
+                // delay for 0.5s
+                _CP0_SET_COUNT(0);
+                while (_CP0_GET_COUNT() < 12000000) {}
+            }
+        }
+        
     }
 }
